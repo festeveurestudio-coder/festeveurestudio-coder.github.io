@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Estudi Tisora</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600&display=swap">
+<style>
+:root{--bg:#f7f3f1;--ink:#1f1a1c;--muted:#6b6064;--acc:#7a3b52;--acc-ink:#fff;--card:#fff;--line:#e9dfdc;--soft:#efe5e3;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#161214;--ink:#f2eaec;--muted:#b6a7ad;--acc:#d48aa4;--acc-ink:#1e0c13;--card:#201a1d;--line:#3a2f34;--soft:#2a2226;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#161214;--ink:#f2eaec;--muted:#b6a7ad;--acc:#d48aa4;--acc-ink:#1e0c13;--card:#201a1d;--line:#3a2f34;--soft:#2a2226;color-scheme:dark}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif}
+h1,h2,h3{font-family:"DM Serif Display",Georgia,serif;font-weight:400;line-height:1.05}
+.demo{background:var(--ink);color:var(--bg);font-size:13px;text-align:center;padding:8px 16px}
+.demo a{color:inherit}
+.wrap{max-width:960px;margin:auto;padding:0 16px}
+header{padding:60px 0 44px}
+.kick{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);font-weight:600}
+h1{font-size:clamp(48px,12vw,96px);margin:10px 0 14px}
+.lead{font-size:18px;color:var(--muted);max-width:32em}
+.btn{display:inline-block;border:0;border-radius:999px;padding:12px 22px;font:600 15px Inter,sans-serif;cursor:pointer;background:var(--acc);color:var(--acc-ink);text-decoration:none;margin-top:22px}
+section{padding:48px 0;border-top:1px solid var(--line)}
+h2{font-size:clamp(32px,6vw,46px);margin-bottom:18px}
+.serv{display:grid;gap:10px}
+.s{display:flex;justify-content:space-between;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 18px;cursor:pointer;text-align:left;font:inherit;color:inherit;width:100%}
+.s small{display:block;color:var(--muted)}
+.s[aria-pressed="true"]{border-color:var(--acc);box-shadow:0 0 0 2px var(--acc) inset}
+.p{font-weight:600;white-space:nowrap}
+.days,.slots{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;margin-bottom:14px}
+.days button,.slots button{flex:0 0 auto;border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:14px;padding:10px 14px;font:500 14px Inter,sans-serif;cursor:pointer}
+.days button[aria-pressed="true"],.slots button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.slots button:disabled{opacity:.35;text-decoration:line-through;cursor:not-allowed}
+.sum{background:var(--soft);border-radius:16px;padding:16px 18px;margin-top:6px}
+.gal{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.gal div{aspect-ratio:3/4;border-radius:14px;background:linear-gradient(160deg,var(--soft),var(--acc));opacity:.85;display:flex;align-items:flex-end;padding:10px;color:#fff;font-size:13px;font-weight:600}
+.msg{color:var(--muted);font-size:14px;margin-top:10px}
+footer{padding:28px 0 40px;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+<div class="demo">Exemple fet per <a href="../../">Fes-te veure</a> · Perruqueria inventada: els serveis i els preus no són reals i no es reserva res.</div>
+<div class="wrap">
+<header>
+  <div class="kick">Perruqueria · color · barberia</div>
+  <h1>Estudi Tisora</h1>
+  <p class="lead">Talls, color i barba sense esperes. Tria el servei, l'hora que et va bé i ja ho tens.</p>
+  <a class="btn" href="#cita">Demanar hora</a>
+</header>
+
+<section id="cita">
+  <div class="kick">Cita en 3 tocs</div>
+  <h2>1 · Què et fem?</h2>
+  <div class="serv" id="serv"></div>
+  <h2 style="margin-top:32px">2 · Quin dia?</h2>
+  <div class="days" id="days"></div>
+  <h2>3 · A quina hora?</h2>
+  <div class="slots" id="slots"></div>
+  <div class="sum" id="sum" aria-live="polite">Tria servei, dia i hora.</div>
+  <button class="btn" id="ok">Confirmar cita</button>
+  <p class="msg" id="out" aria-live="polite"></p>
+</section>
+
+<section>
+  <div class="kick">Treballs</div>
+  <h2>Abans i després</h2>
+  <div class="gal"><div>Balayage</div><div>Tall curt</div><div>Barba</div><div>Color</div><div>Recollit</div><div>Fade</div></div>
+  <p class="msg">A la web real, aquí van les fotos de la perruqueria (o un vídeo vertical de Fes-te veure).</p>
+</section>
+
+<footer>Estudi Tisora és un negoci inventat per ensenyar com podria ser la web d'una perruqueria. Si vols la teva: festeveure.studio@gmail.com · @festeveure.studio</footer>
+</div>
+<script>
+const S=[["Tall de cabell","30 min","18 €"],["Tall i barba","45 min","24 €"],["Color complet","90 min","45 €"],["Balayage","2 h","70 €"],["Rentar i pentinar","30 min","15 €"]];
+const st={s:null,d:null,h:null};
+const $=id=>document.getElementById(id);
+$("serv").innerHTML=S.map((x,i)=>`<button class="s" aria-pressed="false" data-i="${i}"><span><b>${x[0]}</b><small>${x[1]}</small></span><span class="p">${x[2]}</span></button>`).join("");
+$("serv").onclick=e=>{const b=e.target.closest(".s");if(!b)return;st.s=+b.dataset.i;$("serv").querySelectorAll(".s").forEach(x=>x.setAttribute("aria-pressed",x===b));sum()};
+const dn=["dg","dl","dt","dc","dj","dv","ds"],days=[];for(let k=0,d=new Date();days.length<7;k++){const x=new Date(d);x.setDate(d.getDate()+k);if(x.getDay()!==0&&x.getDay()!==1)days.push(x)}
+$("days").innerHTML=days.map((x,i)=>`<button aria-pressed="false" data-i="${i}">${dn[x.getDay()]} ${x.getDate()}</button>`).join("");
+$("days").onclick=e=>{const b=e.target.closest("button");if(!b)return;st.d=+b.dataset.i;st.h=null;$("days").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b));slots();sum()};
+function slots(){const hs=["9:30","10:30","11:30","12:30","16:00","17:00","18:00","19:00"];
+$("slots").innerHTML=hs.map((h,i)=>`<button aria-pressed="false" ${(i*7+st.d*3)%5===0?"disabled":""}>${h}</button>`).join("")}
+$("slots").onclick=e=>{const b=e.target.closest("button");if(!b||b.disabled)return;st.h=b.textContent;$("slots").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b));sum()};
+$("slots").innerHTML='<span class="msg">Primer tria un dia.</span>';
+function sum(){if(st.s===null||st.d===null||!st.h){$("sum").textContent="Tria servei, dia i hora.";return}
+const x=days[st.d];$("sum").innerHTML=`<b>${S[st.s][0]}</b> · ${dn[x.getDay()]} ${x.getDate()} a les ${st.h} · ${S[st.s][2]}`}
+$("ok").onclick=()=>{$("out").textContent=(st.s===null||st.d===null||!st.h)?"Falta triar alguna cosa.":"A la web real, la cita quedaria guardada i la perruqueria rebria un avís. En aquest exemple no es reserva res."};
+</script>
+</body>
+</html>

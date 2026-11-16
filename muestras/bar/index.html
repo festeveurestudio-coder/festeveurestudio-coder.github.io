@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bar Can Exemple</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Inter:wght@400;500;600&display=swap">
+<style>
+:root{--bg:#f6efe3;--ink:#2a1d14;--muted:#6f5d4c;--acc:#b5532a;--acc-ink:#fff;--card:#fffaf2;--line:#e6d8c2;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1a130e;--ink:#f3e9db;--muted:#bba78f;--acc:#e07a4c;--acc-ink:#1a0d06;--card:#241a13;--line:#3a2c20;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1a130e;--ink:#f3e9db;--muted:#bba78f;--acc:#e07a4c;--acc-ink:#1a0d06;--card:#241a13;--line:#3a2c20;color-scheme:dark}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;line-height:1.05}
+.demo{background:var(--ink);color:var(--bg);font-size:13px;text-align:center;padding:8px 16px}
+.demo a{color:inherit}
+.wrap{max-width:960px;margin:auto;padding:0 16px}
+header{padding:56px 0 40px;border-bottom:1px solid var(--line)}
+.kick{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);font-weight:600}
+h1{font-size:clamp(44px,11vw,88px);font-weight:800;margin:10px 0 14px}
+.lead{font-size:18px;color:var(--muted);max-width:34em}
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+.btn{border:0;border-radius:999px;padding:12px 20px;font:600 15px Inter,sans-serif;cursor:pointer;background:var(--acc);color:var(--acc-ink);text-decoration:none}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+section{padding:48px 0;border-bottom:1px solid var(--line)}
+h2{font-size:clamp(30px,6vw,44px);margin-bottom:18px}
+.menu{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px}
+.card h3{font-size:22px;margin-bottom:8px}
+.card ul{list-style:none;padding:0}
+.card li{display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px dashed var(--line)}
+.card li:last-child{border:0}
+.price{font-weight:600;white-space:nowrap}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.tabs button{border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:8px 14px;font:500 14px Inter,sans-serif;cursor:pointer}
+.tabs button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.hours{display:grid;grid-template-columns:auto 1fr;gap:6px 20px;max-width:420px}
+.today{color:var(--acc);font-weight:600}
+.open{display:inline-block;margin-top:12px;font-weight:600;border-radius:999px;padding:4px 12px;background:var(--card);border:1px solid var(--line)}
+form{display:grid;gap:12px;max-width:460px}
+label{display:grid;gap:4px;font-weight:500;font-size:14px}
+input,select{font:16px Inter,sans-serif;padding:10px 12px;border-radius:12px;border:1.5px solid var(--line);background:var(--card);color:var(--ink)}
+.msg{margin-top:10px;color:var(--muted);font-size:14px}
+footer{padding:28px 0 40px;color:var(--muted);font-size:14px}
+</style>
+</head>
+<body>
+<div class="demo">Exemple fet per <a href="../../">Fes-te veure</a> · Bar inventat: ni els plats ni els preus són reals, i el formulari no envia res.</div>
+<div class="wrap">
+<header>
+  <div class="kick">Bar · tapes · menú de migdia</div>
+  <h1>Bar Can Exemple</h1>
+  <p class="lead">Esmorzars de forquilla, menú de migdia cada dia i tapes al vespre. A la plaça de sempre, amb la terrassa de sempre.</p>
+  <div class="cta"><a class="btn" href="#reserva">Reservar taula</a><a class="btn ghost" href="#carta">Veure la carta</a></div>
+</header>
+
+<section id="menu-dia">
+  <div class="kick">Avui</div>
+  <h2>Menú de migdia · 14,50 €</h2>
+  <div class="menu">
+    <div class="card"><h3>Primers</h3><ul><li>Crema de carbassa</li><li>Amanida de la casa</li><li>Macarrons de l'àvia</li></ul></div>
+    <div class="card"><h3>Segons</h3><ul><li>Llobarro a la planxa</li><li>Galta de porc al forn</li><li>Truita de patates</li></ul></div>
+    <div class="card"><h3>Postres</h3><ul><li>Crema catalana</li><li>Fruita del temps</li><li>Cafè inclòs</li></ul></div>
+  </div>
+  <p class="msg">El bar canvia aquest menú cada matí des del mòbil, en un minut.</p>
+</section>
+
+<section id="carta">
+  <div class="kick">Carta</div>
+  <h2>Per picar</h2>
+  <div class="tabs" role="group" aria-label="Seccions de la carta">
+    <button aria-pressed="true" data-t="tapes">Tapes</button><button aria-pressed="false" data-t="entrepans">Entrepans</button><button aria-pressed="false" data-t="begudes">Begudes</button>
+  </div>
+  <div class="card"><ul id="llista"></ul></div>
+</section>
+
+<section id="horari">
+  <div class="kick">Horari</div>
+  <h2>Quan som oberts</h2>
+  <div class="hours" id="hores"></div>
+  <span class="open" id="estat"></span>
+</section>
+
+<section id="reserva">
+  <div class="kick">Reserva</div>
+  <h2>Guarda't taula</h2>
+  <form id="f">
+    <label>Nom<input required name="nom" autocomplete="off"></label>
+    <label>Dia<input required type="date" name="dia"></label>
+    <label>Hora<select name="hora"><option>13:30</option><option>14:00</option><option>14:30</option><option>20:30</option><option>21:00</option></select></label>
+    <label>Persones<select name="p"><option>2</option><option>3</option><option>4</option><option>5</option><option>6+</option></select></label>
+    <button class="btn" type="submit">Reservar per WhatsApp</button>
+  </form>
+  <p class="msg" id="out" aria-live="polite"></p>
+</section>
+
+<footer>Bar Can Exemple és un negoci inventat per ensenyar com podria ser la web d'un bar. Si vols la teva: festeveure.studio@gmail.com · @festeveure.studio</footer>
+</div>
+<script>
+const carta={tapes:[["Patates braves","4,50 €"],["Croquetes de pollastre","6,00 €"],["Pebrots del Padró","5,00 €"],["Calamars a la romana","8,50 €"]],
+entrepans:[["Llonganissa i formatge","4,80 €"],["Truita de patates","4,20 €"],["Pa amb tomàquet i pernil","5,50 €"]],
+begudes:[["Canya","2,20 €"],["Vermut de la casa","3,00 €"],["Cafè amb llet","1,80 €"]]};
+function show(t){document.getElementById("llista").innerHTML=carta[t].map(([n,p])=>`<li><span>${n}</span><span class="price">${p}</span></li>`).join("");
+document.querySelectorAll(".tabs button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.t===t))}
+document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>show(b.dataset.t));show("tapes");
+const dies=["Diumenge","Dilluns","Dimarts","Dimecres","Dijous","Divendres","Dissabte"],h=[[9,16],null,[7,23],[7,23],[7,23],[7,24],[9,24]];
+const d=new Date(),i=d.getDay();
+document.getElementById("hores").innerHTML=[1,2,3,4,5,6,0].map(k=>`<span class="${k===i?"today":""}">${dies[k]}</span><span class="${k===i?"today":""}">${h[k]?h[k][0]+":00 – "+h[k][1]+":00":"Tancat"}</span>`).join("");
+const o=h[i]&&d.getHours()>=h[i][0]&&d.getHours()<h[i][1];document.getElementById("estat").textContent=o?"Ara obert":"Ara tancat";
+document.getElementById("f").onsubmit=e=>{e.preventDefault();const f=new FormData(e.target);
+document.getElementById("out").textContent=`A la web real, això obriria WhatsApp amb el missatge: «Hola! Voldria reservar per a ${f.get("p")} el ${f.get("dia")} a les ${f.get("hora")}. Sóc ${f.get("nom")}.» En aquest exemple no s'envia res.`};
+</script>
+</body>
+</html>
