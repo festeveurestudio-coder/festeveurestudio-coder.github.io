@@ -1,0 +1,725 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simulación · Vista de la tienda · José Tomás</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%235a0f14'/%3E%3Ctext x='16' y='23' text-anchor='middle' font-family='Arial Narrow,Arial' font-weight='700' font-size='20' fill='%23eeb33a'%3EJT%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="fonts.css?v=20261112n">
+<link rel="stylesheet" href="styles.css?v=20261112n">
+</head>
+<body data-page="gestion">
+<div class="mode-bar" role="note"><b>Simulación</b><span>Así vería la tienda las solicitudes. Sólo lee las demostraciones guardadas en este navegador; no es un panel real.</span></div>
+<main class="admin" id="main">
+  <h1>Por revisar</h1>
+  <p>Flujo previsto: la tienda revisa cada solicitud y la confirma, propone un cambio o indica que no está disponible. La versión real necesita un panel privado y avisos acordados con la tienda.</p>
+  <p><a href="index.html">← Volver a la web</a></p>
+  <p id="admin-empty" class="hint">No hay solicitudes de demostración en este navegador.</p>
+  <ul id="admin-list"></ul>
+  <p><button type="button" class="link" id="admin-clear">Borrar todas las solicitudes de demostración</button></p>
+</main>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script type="application/json" id="site-config">
+{
+ "id": "jose-tomas",
+ "shop": "José Tomás",
+ "lang": "es",
+ "refPrefix": "JT",
+ "phoneLabel": "93 387 79 77",
+ "phoneHref": "+34933877977",
+ "mode": "demo",
+ "endpoint": null,
+ "pickup": {
+  "minDaysAhead": 1,
+  "days": 14,
+  "noAfternoonDays": []
+ },
+ "families": [
+  {
+   "id": "jamones",
+   "name": "Jamones",
+   "word": "Jamón",
+   "blurb": "En pieza o loncheado, para casa o para quedar bien.",
+   "long": "Elige calidad y cómo lo quieres. Abajo tienes los precios del jamón y la paleta enteros y del loncheado al peso.",
+   "options": [
+    {
+     "label": "¿Jamón o paleta?",
+     "choices": [
+      "Jamón",
+      "Paleta",
+      "Que me aconsejen"
+     ]
+    },
+    {
+     "label": "¿Qué calidad?",
+     "choices": [
+      "Serrano o Duroc",
+      "Ibérico de cebo",
+      "Ibérico de cebo de campo",
+      "Ibérico de bellota 75 %",
+      "Ibérico de bellota 100 %",
+      "Que me aconsejen"
+     ]
+    },
+    {
+     "label": "¿Cómo lo prefieres?",
+     "choices": [
+      "Loncheado",
+      "En pieza",
+      "Virutas",
+      "Taquitos",
+      "Que me aconsejen"
+     ]
+    },
+    {
+     "label": "¿Para qué es?",
+     "choices": [
+      "Aperitivo",
+      "Bocadillos",
+      "Regalo",
+      "Una ocasión especial"
+     ]
+    }
+   ],
+   "qtyLabel": "personas",
+   "hint": "Ej.: loncheado fino, en sobres de ración",
+   "photo": "assets/fotos/jamones-colgados.jpg",
+   "photoAlt": "Jamones colgados en la tienda, con sus etiquetas",
+   "knownNote": "Calidades y precios de pieza entera dados por la tienda en noviembre de 2026.",
+   "weight": true,
+   "piece": "piezas",
+   "prices": {
+    "tables": [
+     {
+      "title": "Jamón entero, precio por pieza",
+      "rows": [
+       {
+        "name": "Serrano o Duroc",
+        "price": 169,
+        "weight": "8,5–9 kg"
+       },
+       {
+        "name": "Ibérico de cebo",
+        "price": 249,
+        "weight": "8,5–9 kg"
+       },
+       {
+        "name": "Ibérico de cebo de campo",
+        "price": 299,
+        "weight": "8,5–9 kg"
+       },
+       {
+        "name": "Ibérico de bellota 75 %",
+        "price": 450,
+        "weight": "8,5–9 kg"
+       },
+       {
+        "name": "Ibérico de bellota 100 %",
+        "price": 520,
+        "weight": "8,5–9 kg"
+       }
+      ]
+     },
+     {
+      "title": "Paleta entera, precio por pieza",
+      "rows": [
+       {
+        "name": "Ibérica de cebo de campo 75 %",
+        "price": 139,
+        "weight": "5,5–6 kg"
+       },
+       {
+        "name": "Ibérica de cebo de campo 100 %",
+        "price": 169,
+        "weight": "5,5–6 kg"
+       },
+       {
+        "name": "Ibérica de bellota 50 % o 75 %",
+        "price": 225,
+        "weight": "5,5–6 kg"
+       },
+       {
+        "name": "Ibérica de bellota 100 %",
+        "price": 249,
+        "weight": "5,5–6 kg"
+       }
+      ]
+     },
+     {
+      "title": "Al corte, precio por kilo",
+      "per": "kg",
+      "rows": [
+       {
+        "name": "Loncheado ibérico de cebo",
+        "price": 79.99,
+        "weight": null
+       },
+       {
+        "name": "Loncheado ibérico de cebo de campo",
+        "price": 99.99,
+        "weight": null
+       },
+       {
+        "name": "Loncheado ibérico de bellota",
+        "price": 139.99,
+        "weight": null
+       },
+       {
+        "name": "Virutas de jamón",
+        "price": 35,
+        "weight": null
+       },
+       {
+        "name": "Taquitos de jamón",
+        "price": 39.99,
+        "weight": null
+       }
+      ]
+     }
+    ],
+    "note": "Peso aproximado de cada pieza."
+   },
+   "offer": {
+    "title": "Oferta: paletilla lista para comer",
+    "text": "Paletilla ibérica de cebo de campo cortada y envasada, con una botella de regalo, por 139 €, lo mismo que entera. El corte y el envasado no se cobran."
+   }
+  },
+  {
+   "id": "embutidos",
+   "name": "Embutidos",
+   "word": "Embutido",
+   "blurb": "Para la tabla, el bocadillo o la merienda.",
+   "long": "Dinos qué buscas o para qué lo quieres. Si no lo tienes claro, deja que te aconsejen.",
+   "options": [
+    {
+     "label": "¿Cuál?",
+     "choices": [
+      "Chorizo de bellota",
+      "Salchichón de bellota",
+      "Lomo ibérico",
+      "Lomo de bellota",
+      "Longaniza Obach",
+      "Butifarra negra",
+      "Butifarra blanca",
+      "Butifarra de huevo",
+      "Butifarra de perol",
+      "Morcilla choricera",
+      "Tocino ibérico",
+      "Bloc de foie",
+      "Otro"
+     ]
+    },
+    {
+     "label": "¿Para qué es?",
+     "choices": [
+      "Tabla",
+      "Bocadillos",
+      "Cocinar",
+      "Merienda"
+     ]
+    },
+    {
+     "label": "¿Cómo lo prefieres?",
+     "choices": [
+      "Loncheado",
+      "En pieza",
+      "Surtido",
+      "Que me aconsejen"
+     ]
+    }
+   ],
+   "qtyLabel": "personas",
+   "hint": "Ej.: surtido suave, sin picante",
+   "photo": "assets/fotos/embutido-sarta.jpg",
+   "photoAlt": "Embutido curado en sarta sobre el mostrador",
+   "knownNote": "Precios dados por la tienda en noviembre de 2026.",
+   "weight": true,
+   "prices": {
+    "tables": [
+     {
+      "title": "Precio por kilo",
+      "per": "kg",
+      "rows": [
+       {
+        "name": "Lomo de bellota",
+        "price": 79.99,
+        "weight": null
+       },
+       {
+        "name": "Lomo ibérico",
+        "price": 69.99,
+        "weight": null
+       },
+       {
+        "name": "Bloc de foie",
+        "price": 79.9,
+        "weight": null
+       },
+       {
+        "name": "Chorizo de bellota",
+        "price": 35,
+        "weight": null
+       },
+       {
+        "name": "Salchichón de bellota",
+        "price": 35,
+        "weight": null
+       },
+       {
+        "name": "Longaniza Obach",
+        "price": 26.99,
+        "weight": null
+       },
+       {
+        "name": "Butifarras: negra, blanca, de huevo y de perol",
+        "price": 18.99,
+        "weight": null
+       },
+       {
+        "name": "Morcilla choricera",
+        "price": 16.99,
+        "weight": null
+       }
+      ]
+     }
+    ],
+    "note": "Se vende al peso: el importe final depende de lo que pese. Tocino ibérico: precio por confirmar. Patés: en Navidad."
+   }
+  },
+  {
+   "id": "quesos",
+   "name": "Quesos",
+   "word": "Queso",
+   "blurb": "Tiernos, curados, para tabla o para cocinar.",
+   "long": "Indica qué tipo te apetece o qué uso le vas a dar. La selección real la confirma la tienda.",
+   "options": [
+    {
+     "label": "¿Qué tipo?",
+     "multi": true,
+     "choices": [
+      "Tierno: García Vaquero",
+      "Semicurado: Flor de Esgueva",
+      "Curado: viejo de cabra",
+      "Trufado",
+      "Que me aconsejen"
+     ]
+    },
+    {
+     "label": "¿Para qué es?",
+     "choices": [
+      "Tabla",
+      "Cocinar",
+      "Regalo"
+     ]
+    }
+   ],
+   "qtyLabel": "personas",
+   "hint": "Ej.: una tabla variada con algo azul",
+   "photo": "assets/fotos/quesos.jpg",
+   "photoAlt": "Dos cuñas de queso con pimienta sobre el mostrador",
+   "knownNote": "Precios dados por la tienda en noviembre de 2026.",
+   "weight": true,
+   "prices": {
+    "tables": [
+     {
+      "title": "Precio por kilo",
+      "per": "kg",
+      "rows": [
+       {
+        "name": "Tierno García Vaquero",
+        "price": 19.9,
+        "weight": null
+       },
+       {
+        "name": "Semicurado Flor de Esgueva",
+        "price": 19.99,
+        "weight": "En oferta"
+       },
+       {
+        "name": "Queso trufado",
+        "price": 35,
+        "weight": null
+       }
+      ]
+     }
+    ],
+    "note": "Se vende al peso: el importe final depende de lo que pese. Viejo de cabra: precio por confirmar."
+   }
+  },
+  {
+   "id": "carnes",
+   "name": "Carnes",
+   "word": "Carne",
+   "blurb": "Entrecots y la pieza que necesites para tu receta.",
+   "long": "Indica la pieza o qué vas a cocinar. Peso final, disponibilidad y precio los confirma la tienda.",
+   "options": [
+    {
+     "label": "¿Qué carne?",
+     "choices": [
+      "Ternera",
+      "Cerdo",
+      "Pollo",
+      "Cordero",
+      "Que me aconsejen"
+     ]
+    },
+    {
+     "label": "¿Cómo la vas a cocinar?",
+     "choices": [
+      "A la brasa",
+      "Plancha",
+      "Horno",
+      "Guiso",
+      "Que me aconsejen"
+     ]
+    }
+   ],
+   "qtyLabel": "raciones",
+   "hint": "Ej.: entrecot de dos dedos, sin nervio",
+   "knownNote": "Calidades y tipos orientativos, pendientes de confirmar con la tienda.",
+   "weight": true
+  },
+  {
+   "id": "rebozados",
+   "name": "Rebozados y preparados",
+   "word": "Rebozados",
+   "blurb": "Para acabar en casa.",
+   "long": "Pregunta qué hay preparado. Lo que haya cada día lo confirma la tienda.",
+   "options": [
+    {
+     "label": "¿Para cuándo lo quieres comer?",
+     "choices": [
+      "Ese mismo día",
+      "Para congelar",
+      "Me da igual"
+     ]
+    }
+   ],
+   "qtyLabel": "raciones",
+   "hint": "Ej.: rebozados para los niños"
+  },
+  {
+   "id": "tartas",
+   "name": "Tartas de queso",
+   "word": "Tarta de queso",
+   "blurb": "La parte dulce del mostrador.",
+   "long": "Dinos para cuántos es y para qué día. La tienda te confirma tamaños y plazo.",
+   "options": [
+    {
+     "label": "¿Para qué es?",
+     "choices": [
+      "Postre en casa",
+      "Cumpleaños",
+      "Regalo"
+     ]
+    }
+   ],
+   "qtyLabel": "personas",
+   "hint": "Ej.: para el domingo a mediodía",
+   "prices": {
+    "tables": [
+     {
+      "title": "Precio por kilo",
+      "per": "kg",
+      "rows": [
+       {
+        "name": "Tarta de queso",
+        "price": 35
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "conservas",
+   "name": "Aceitunas y conservas",
+   "word": "Conservas",
+   "blurb": "Lo que acompaña a la tabla.",
+   "long": "Dinos qué buscas. Lo que haya en la estantería lo confirma la tienda.",
+   "photo": "assets/fotos/aceitunas.jpg",
+   "photoAlt": "Botes de aceitunas sobre el mostrador",
+   "options": [
+    {
+     "label": "¿Qué buscas?",
+     "multi": true,
+     "choices": [
+      "Aceitunas",
+      "Melocotón en almíbar",
+      "Especias",
+      "Polvorones",
+      "Conservas",
+      "Que me aconsejen"
+     ]
+    }
+   ],
+   "qtyLabel": "botes",
+   "hint": "Ej.: aceitunas para un aperitivo",
+   "knownNote": "Precios dados por la tienda en noviembre de 2026.",
+   "prices": {
+    "tables": [
+     {
+      "title": "Precios",
+      "rows": [
+       {
+        "name": "Aceitunas",
+        "price": 5.99,
+        "per": "bote",
+        "weight": "Medio kilo escurrido (900 g con el líquido)"
+       },
+       {
+        "name": "Melocotón en almíbar",
+        "price": 27.99,
+        "per": "bote",
+        "weight": null
+       },
+       {
+        "name": "Especias",
+        "price": 1.55,
+        "from": true,
+        "per": "unidad",
+        "weight": null
+       }
+      ]
+     }
+    ],
+    "note": "Polvorones: precio por confirmar. Lo que haya en la estantería lo confirma la tienda."
+   }
+  },
+  {
+   "id": "cestas",
+   "name": "Cestas",
+   "word": "Cestas",
+   "blurb": "Para regalar, agradecer o celebrar.",
+   "long": "Cuéntanos para quién es y un presupuesto orientativo. José Tomás te propondrá una composición.",
+   "options": [
+    {
+     "label": "¿Para quién es?",
+     "choices": [
+      "Familia",
+      "Amigos",
+      "Empresa",
+      "Navidad"
+     ]
+    },
+    {
+     "label": "Presupuesto orientativo",
+     "choices": [
+      "Lo hablamos",
+      "Ajustado",
+      "Sin límite"
+     ]
+    }
+   ],
+   "qtyLabel": "cestas",
+   "hint": "Ej.: que lleve jamón y queso, sin alcohol",
+   "photo": "assets/fotos/cesta.jpg",
+   "photoAlt": "Cesta de mimbre con vino, embutidos, queso y conservas en la tienda"
+  }
+ ],
+ "other": {
+  "id": "otro",
+  "name": "Otra petición",
+  "groupsRequired": false,
+  "blurb": "Algo que no aparece aquí.",
+  "long": "¿Buscas algo concreto? Descríbelo y la tienda te dirá si puede prepararlo.",
+  "hint": "Cuéntanos qué necesitas"
+ },
+ "ideas": [
+  {
+   "id": "aperitivo",
+   "label": "Aperitivo para 6",
+   "note": "Jamón, embutido y queso",
+   "lines": [
+    {
+     "fam": "jamones",
+     "choices": [
+      "Loncheado",
+      "Aperitivo"
+     ],
+     "qty": 6
+    },
+    {
+     "fam": "embutidos",
+     "choices": [
+      "Tabla",
+      "Surtido"
+     ],
+     "qty": 6
+    },
+    {
+     "fam": "quesos",
+     "choices": [
+      "Tabla"
+     ],
+     "qty": 6
+    }
+   ]
+  },
+  {
+   "id": "brasa",
+   "label": "Brasa del domingo",
+   "note": "Carne y algo para empezar",
+   "lines": [
+    {
+     "fam": "carnes",
+     "choices": [
+      "A la brasa"
+     ],
+     "qty": 4
+    },
+    {
+     "fam": "embutidos",
+     "choices": [
+      "Tabla"
+     ],
+     "qty": 4
+    }
+   ]
+  },
+  {
+   "id": "ninos",
+   "label": "Cena sin complicarse",
+   "note": "Rebozados y postre",
+   "lines": [
+    {
+     "fam": "rebozados",
+     "choices": [
+      "Ese mismo día"
+     ],
+     "qty": 4
+    },
+    {
+     "fam": "tartas",
+     "choices": [
+      "Postre en casa"
+     ],
+     "qty": 4
+    }
+   ]
+  },
+  {
+   "id": "regalo",
+   "label": "Un regalo",
+   "note": "Una cesta a medida",
+   "lines": [
+    {
+     "fam": "cestas",
+     "choices": [
+      "Lo hablamos"
+     ],
+     "qty": 1
+    }
+   ]
+  }
+ ],
+ "t": {
+  "modeDemo": "Demostración",
+  "modeLive": "Encargos activos",
+  "cardCta": "Añadir",
+  "knownLabel": "Sabemos que hay",
+  "detailOptional": "Algo más que debamos saber (opcional)",
+  "detailRequired": "¿Qué necesitas?",
+  "detailErr": "Elige una opción o escribe qué te gustaría.",
+  "less": "Quitar uno",
+  "more": "Añadir uno",
+  "added": "{name}, en tu lista",
+  "listAria": "Mi lista: {n} peticiones",
+  "listAriaOne": "Mi lista: 1 petición",
+  "steps": [
+   "Lista",
+   "Entrega",
+   "Tus datos",
+   "Resumen"
+  ],
+  "empty": "Tu lista está vacía.",
+  "emptyCta": "Ver el mostrador",
+  "stepListTitle": "Tu lista",
+  "priceNote": "Sin precios: el importe y el peso final los confirma la tienda.",
+  "addMore": "Añadir más",
+  "next": "Continuar",
+  "back": "Atrás",
+  "stepPickupTitle": "¿Cómo y cuándo lo quieres?",
+  "dayLegend": "Día que te gustaría",
+  "dayHint": "Días de apertura y plazos: pendientes de confirmar con la tienda.",
+  "slotLegend": "Franja",
+  "slots": [
+   "Mañana",
+   "Tarde",
+   "Me es igual"
+  ],
+  "noAfternoon": "",
+  "errDate": "Elige un día.",
+  "errSlot": "Elige una franja.",
+  "stepContactTitle": "¿Cómo te avisamos?",
+  "fName": "Nombre",
+  "fPhone": "Teléfono",
+  "phoneHint": "Para confirmar el encargo contigo.",
+  "fNotes": "Notas para la tienda (opcional)",
+  "notesHint": "Alergias, cómo lo quieres cortado…",
+  "consent": "Entiendo que es una solicitud: la tienda debe confirmar disponibilidad, precio y hora antes de aceptarla.",
+  "errName": "Escribe tu nombre.",
+  "errPhone": "Escribe un teléfono español de 9 cifras.",
+  "errConsent": "Marca la casilla para continuar.",
+  "errSend": "No se ha podido enviar y no se ha registrado nada. Llama al {phone}.",
+  "demoSubmit": "Demostración: al pulsar no se envía nada a la tienda. Solo verás el resumen.",
+  "submitDemo": "Ver resumen (no se envía)",
+  "submitLive": "Enviar solicitud a la tienda",
+  "doneDemoTitle": "Resumen. No se ha enviado.",
+  "doneDemoLead": "Esto es lo que recibiría {shop}. Para encargarlo de verdad hoy, llama a la tienda.",
+  "doneLiveTitle": "Solicitud enviada",
+  "doneLiveLead": "{shop} la ha recibido. Aún no está aceptada: te llamarán para confirmar disponibilidad, precio y hora.",
+  "call": "Llamar al {phone}",
+  "copy": "Copiar resumen",
+  "copied": "Resumen copiado",
+  "copyFail": "Texto seleccionado: cópialo con el teclado",
+  "close": "Cerrar",
+  "remove": "Quitar {name}",
+  "cleared": "Datos de demostración borrados",
+  "summaryTitle": "SOLICITUD DE ENCARGO",
+  "summaryDemo": "DEMOSTRACIÓN, NO ENVIADA",
+  "summaryPickup": "Entrega deseada",
+  "summaryNotes": "Notas",
+  "summaryFoot": "Precio, disponibilidad y hora: pendientes de confirmar por la tienda.",
+  "simulated": "Simulación",
+  "status": {
+   "pendiente": "Pendiente de revisión",
+   "confirmado": "Confirmado por la tienda",
+   "propuesta": "La tienda propone un cambio",
+   "no-disponible": "No disponible"
+  },
+  "admReply": "Mensaje para el cliente (opcional)",
+  "admConfirm": "Confirmar",
+  "admPropose": "Proponer cambio",
+  "admNo": "No disponible",
+  "unitLabel": "Cantidad en",
+  "qtyLabel": "Cantidad",
+  "grams": "Gramos",
+  "modeLegend": "Entrega",
+  "modeStore": "Recoger en tienda",
+  "modeHome": "A domicilio",
+  "homeNote": "Propuesta, aún sin acordar con la tienda. Pedido mínimo de ejemplo: {min} €. Como aquí no hay precios, la tienda comprobaría el importe, la zona y el coste al confirmar.",
+  "fAddress": "Dirección",
+  "fPostal": "Código postal",
+  "errAddress": "Escribe la dirección.",
+  "errPostal": "Escribe un código postal de 5 cifras.",
+  "summaryHome": "Precio, pedido mínimo, zona y hora de reparto: pendientes de confirmar por la tienda.",
+  "priceFrom": "desde",
+  "singular": {
+   "personas": "persona",
+   "piezas": "pieza",
+   "raciones": "ración",
+   "cestas": "cesta",
+   "botes": "bote"
+  }
+ },
+ "delivery": {
+  "enabled": true,
+  "minEuros": 20
+ }
+}
+</script>
+<script src="encargo.js?v=20261112n"></script>
+</body>
+</html>
