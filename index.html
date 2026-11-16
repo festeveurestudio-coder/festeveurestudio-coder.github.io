@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Fes-te veure: vídeos verticals i webs senzilles per a negocis del Maresme.">
+<title>Fes-te veure</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout: portada con mascota y móvil, luego servicios, proceso, trabajos y contacto en bandas a lo ancho */
+:root{
+  --paper:#fbf7ec;--ink:#1b1a17;--muted:#5e5a50;--red:#d42a20;--red-ink:#ffffff;--card:#ffffff;--line:#e8e0cc;--tint:#f3ecda;
+  --display:"Baloo 2",ui-rounded,system-ui,sans-serif;--body:"Inter",ui-sans-serif,system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#17150f;--ink:#f3eee2;--muted:#b3ab98;--red:#ef4b3f;--red-ink:#1b0b09;--card:#211e17;--line:#38332a;--tint:#262219;color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#17150f;--ink:#f3eee2;--muted:#b3ab98;--red:#ef4b3f;--red-ink:#1b0b09;--card:#211e17;--line:#38332a;--tint:#262219;color-scheme:dark}
+body{background:var(--paper);color:var(--ink);font:16px/1.6 var(--body)}
+.band{padding-block:64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1080px;margin:0 auto;display:grid;gap:28px}
+.draft{background:var(--ink);color:var(--paper);text-align:center;font-size:13px;padding-block:8px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+nav{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding-block:14px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));max-width:1080px;margin:0 auto}
+.brand{display:flex;align-items:center;gap:10px;font:800 22px var(--display);color:var(--ink);text-decoration:none}
+.brand img{width:44px;height:44px;border-radius:50%}
+.lang{display:flex;gap:4px}
+.lang button{border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:999px;padding:4px 12px;font:600 13px var(--body);cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+.hero>*{min-width:0}
+h1{font:800 clamp(40px,7vw,76px)/.95 var(--display);margin:0;letter-spacing:-.01em;text-wrap:balance}
+h1 em{font-style:normal;color:var(--red)}
+.lead{font-size:clamp(17px,2.2vw,20px);color:var(--muted);max-width:34em;margin:18px 0 0}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:12px 22px;font:600 15px var(--body);text-decoration:none;cursor:pointer;border:2px solid var(--ink)}
+.btn.primary{background:var(--red);border-color:var(--red);color:var(--red-ink)}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn:focus-visible,.lang button:focus-visible,.copy:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+.zone{margin-top:22px;font-size:14px;color:var(--muted)}
+.zone b{color:var(--ink)}
+.stage{position:relative;display:grid;place-items:center}
+.stage .mascot{width:min(100%,380px);border-radius:28px;box-shadow:0 18px 40px -20px rgba(0,0,0,.35);max-width:100%}
+h2{font:800 clamp(30px,4.6vw,46px)/1 var(--display);margin:0;text-wrap:balance}
+.kicker{font:600 13px var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--red)}
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.svc{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px;display:grid;gap:8px;align-content:start;min-width:0}
+.svc h3{font:800 24px/1.1 var(--display);margin:0}
+.svc p{margin:0;color:var(--muted)}
+.svc .tag{font-size:13px;font-weight:600;color:var(--ink);background:var(--tint);border-radius:999px;padding:3px 10px;justify-self:start}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;counter-reset:s}
+.step{display:grid;gap:6px;align-content:start;min-width:0}
+.step::before{counter-increment:s;content:counter(s);width:40px;height:40px;border-radius:50%;background:var(--red);color:var(--red-ink);display:grid;place-items:center;font:800 20px var(--display)}
+.step h3{margin:6px 0 0;font:800 20px/1.15 var(--display)}
+.step p{margin:0;color:var(--muted);font-size:15px}
+.tinted{background:var(--tint)}
+.works{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:18px;align-items:start}
+.work{margin:0;display:grid;gap:10px;min-width:0}
+.work .frame{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--card)}
+.work img{display:block;width:100%;height:auto}
+.work.phone .frame{max-width:260px;border-radius:28px;border:6px solid var(--ink)}
+.work figcaption{font-size:14px;color:var(--muted)}
+.work figcaption b{color:var(--ink);display:block;font:800 19px/1.2 var(--display)}
+.pending{position:absolute;left:10px;top:10px;background:var(--ink);color:var(--paper);font-size:12px;font-weight:600;border-radius:999px;padding:3px 10px}
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center}
+.contact>*{min-width:0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px;display:grid;gap:14px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.row span{font:600 17px var(--body);overflow-wrap:anywhere;user-select:all}
+.row small{display:block;color:var(--muted);font-size:13px;font-weight:500}
+.copy{border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:999px;padding:6px 14px;font:600 13px var(--body);cursor:pointer}
+footer{padding-block:28px;text-align:center;color:var(--muted);font-size:14px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+@media (max-width:860px){.hero,.contact{grid-template-columns:1fr}.services{grid-template-columns:1fr}.steps{grid-template-columns:1fr 1fr}.works{grid-template-columns:1fr}.stage{order:-1}.stage .mascot{width:220px}}
+@media (max-width:480px){.steps{grid-template-columns:1fr}.band{padding-block:44px}}
+</style>
+<style>*,*::before,*::after{box-sizing:border-box}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+
+
+
+<nav>
+  <a class="brand" href="#inici"><img src="logo.jpg" alt="">Fes-te veure</a>
+  <div class="lang" role="group" aria-label="Idioma">
+    <button id="l-ca" aria-pressed="true">CA</button><button id="l-es" aria-pressed="false">ES</button>
+  </div>
+</nav>
+
+<section class="band" id="inici">
+  <div class="wrap hero">
+    <div>
+      <h1 data-ca="Que el teu negoci <em>es vegi.</em>" data-es="Que tu negocio <em>se vea.</em>"></h1>
+      <p class="lead" data-ca="Fem vídeos verticals per a Instagram i WhatsApp i webs senzilles per a botigues, restaurants, immobiliàries i escoles del Maresme. Amb el teu material real i sense complicar-te la vida." data-es="Hacemos vídeos verticales para Instagram y WhatsApp y webs sencillas para tiendas, restaurantes, inmobiliarias y escuelas del Maresme. Con tu material real y sin complicarte la vida."></p>
+      <div class="cta">
+        <a class="btn primary" href="#contacte" data-ca="Demana una mostra gratis" data-es="Pide una muestra gratis"></a>
+        <a class="btn ghost" href="#treballs" data-ca="Veure mostres" data-es="Ver muestras"></a>
+      </div>
+      <p class="zone" data-ca="Treballem a <b>Tiana, Montgat, el Masnou, Alella i Badalona</b>, i a tot el Maresme." data-es="Trabajamos en <b>Tiana, Montgat, el Masnou, Alella y Badalona</b>, y en todo el Maresme."></p>
+    </div>
+    <div class="stage"><img class="mascot" src="logo.jpg" alt="El Barrufet de Fes-te veure, amb una lupa"></div>
+  </div>
+</section>
+
+<section class="band tinted" id="serveis">
+  <div class="wrap">
+    <div><div class="kicker" data-ca="Què fem" data-es="Qué hacemos"></div><h2 data-ca="Tres maneres de fer-te veure" data-es="Tres formas de hacerte ver"></h2></div>
+    <div class="services">
+      <article class="svc"><span class="tag" data-ca="20–30 segons" data-es="20–30 segundos"></span><h3 data-ca="Vídeo vertical" data-es="Vídeo vertical"></h3><p data-ca="Un reel amb el teu producte, el teu espai o la teva gent, amb muntatge, textos i una ronda de canvis. Llest per a Instagram, WhatsApp i la teva web." data-es="Un reel con tu producto, tu espacio o tu gente, con montaje, textos y una ronda de cambios. Listo para Instagram, WhatsApp y tu web."></p></article>
+      <article class="svc"><span class="tag" data-ca="Mòbil primer" data-es="Móvil primero"></span><h3 data-ca="Web senzilla" data-es="Web sencilla"></h3><p data-ca="Una pàgina clara amb el que fas, horaris, com arribar i un botó per contactar. Ràpida al mòbil i fàcil d'actualitzar." data-es="Una página clara con lo que haces, horarios, cómo llegar y un botón para contactar. Rápida en el móvil y fácil de actualizar."></p></article>
+      <article class="svc"><span class="tag" data-ca="Cada mes" data-es="Cada mes"></span><h3 data-ca="Contingut continuat" data-es="Contenido continuo"></h3><p data-ca="Si vols publicar sovint, preparem uns quants vídeos cada mes amb el que graveu, perquè les xarxes no s'aturin." data-es="Si quieres publicar a menudo, preparamos varios vídeos cada mes con lo que grabéis, para que las redes no se paren."></p></article>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="com">
+  <div class="wrap">
+    <div><div class="kicker" data-ca="Com treballem" data-es="Cómo trabajamos"></div><h2 data-ca="Primer ho veus, després decideixes" data-es="Primero lo ves, después decides"></h2></div>
+    <div class="steps">
+      <div class="step"><h3 data-ca="Ens escrius" data-es="Nos escribes"></h3><p data-ca="Per correu o Instagram. Ens expliques què vols destacar." data-es="Por correo o Instagram. Nos cuentas qué quieres destacar."></p></div>
+      <div class="step"><h3 data-ca="Mostra gratis" data-es="Muestra gratis"></h3><p data-ca="Et preparem una primera mostra amb el teu material, sense compromís." data-es="Te preparamos una primera muestra con tu material, sin compromiso."></p></div>
+      <div class="step"><h3 data-ca="Pressupost a mida" data-es="Presupuesto a medida"></h3><p data-ca="Si t'agrada, et passem el preu abans de començar. Res d'ensurts." data-es="Si te gusta, te pasamos el precio antes de empezar. Sin sorpresas."></p></div>
+      <div class="step"><h3 data-ca="Entrega" data-es="Entrega"></h3><p data-ca="Rebs la peça final, amb una ronda de canvis inclosa." data-es="Recibes la pieza final, con una ronda de cambios incluida."></p></div>
+    </div>
+  </div>
+</section>
+
+<section class="band tinted" id="treballs">
+  <div class="wrap">
+    <div><div class="kicker" data-ca="Mostres" data-es="Muestras"></div><h2 data-ca="Així podria quedar el teu negoci" data-es="Así podría quedar tu negocio"></h2></div>
+    <div class="works">
+      <figure class="work"><div class="frame"><img src="jose-tomas-escritorio.jpg" alt="Web de José Tomás, xarcuteria de Badalona"></div><figcaption><b>José Tomás</b><span data-ca="Web per a una xarcuteria de Badalona, amb encàrrecs i sorteig." data-es="Web para una charcutería de Badalona, con encargos y sorteo."></span></figcaption></figure>
+      <figure class="work phone"><div class="frame"><img src="can-pau-movil-portada.jpg" alt="Web de Can Pau al mòbil"></div><figcaption><b>Can Pau</b><span data-ca="Web per al forn Germans Solà de Tiana." data-es="Web para el horno Germans Solà de Tiana."></span></figcaption></figure>
+      <figure class="work phone"><div class="frame"><img src="finques-frame.jpg" alt="Fotograma d'un vídeo immobiliari"></div><figcaption><b data-ca="Recorregut immobiliari" data-es="Recorrido inmobiliario"></b><span data-ca="Vídeo vertical de 35 s d'una casa, amb plànol i recreació virtual indicada." data-es="Vídeo vertical de 35 s de una casa, con plano y recreación virtual indicada."></span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="contacte">
+  <div class="wrap contact">
+    <div><div class="kicker" data-ca="Contacte" data-es="Contacto"></div><h2 data-ca="Demana la teva mostra" data-es="Pide tu muestra"></h2><p class="lead" data-ca="Explica'ns el teu negoci i què t'agradaria ensenyar. Et responem tan aviat com puguem." data-es="Cuéntanos tu negocio y qué te gustaría enseñar. Te respondemos lo antes posible."></p></div>
+    <div class="card">
+      <div class="row"><span><small data-ca="Correu" data-es="Correo"></small>festeveure.studio@gmail.com</span><button class="copy" data-copy="festeveure.studio@gmail.com" data-ca="Copiar" data-es="Copiar"></button></div>
+      <div class="row"><span><small>Instagram</small>@festeveure.studio</span><a class="copy" href="https://www.instagram.com/festeveure.studio/" target="_blank" rel="noopener" data-ca="Obrir" data-es="Abrir"></a></div>
+    </div>
+  </div>
+</section>
+
+<footer><span data-ca="Fes-te veure · vídeos i webs per a negocis del Maresme" data-es="Fes-te veure · vídeos y webs para negocios del Maresme"></span></footer>
+
+<script>
+function setLang(l){
+  document.documentElement.lang=l;
+  document.querySelectorAll("[data-ca]").forEach(e=>{e.innerHTML=e.getAttribute("data-"+l)});
+  document.getElementById("l-ca").setAttribute("aria-pressed",l==="ca");
+  document.getElementById("l-es").setAttribute("aria-pressed",l==="es");
+  try{localStorage.setItem("ftv-lang",l)}catch(e){}
+}
+document.getElementById("l-ca").onclick=()=>setLang("ca");
+document.getElementById("l-es").onclick=()=>setLang("es");
+let start="ca";try{start=localStorage.getItem("ftv-lang")||"ca"}catch(e){}
+setLang(start);
+document.addEventListener("click",e=>{const b=e.target.closest("button[data-copy]");if(!b)return;
+  const t=b.getAttribute("data-copy"),old=b.textContent;
+  navigator.clipboard.writeText(t).then(()=>{b.textContent="✓";setTimeout(()=>b.textContent=old,1500)}).catch(()=>{const s=b.parentElement.querySelector("span");const r=document.createRange();r.selectNodeContents(s);const sel=getSelection();sel.removeAllRanges();sel.addRange(r)})});
+</script>
+
+</body>
+</html>
