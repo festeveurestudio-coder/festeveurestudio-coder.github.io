@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Nou Gras · Mostra</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Inter:wght@400;500;600&display=swap">
+<style>
+:root{--paper:#fbf7ec;--ink:#1b1a17;--muted:#5e5a50;--red:#d42a20;--red-ink:#fff;--card:#fff;--line:#e8e0cc;--tint:#f3ecda;color-scheme:light;
+  --h:"Baloo 2",system-ui,sans-serif;--t:Inter,system-ui,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#17150f;--ink:#f3eee2;--muted:#b3ab98;--red:#ef4b3f;--red-ink:#1b0b09;--card:#211e17;--line:#38332a;--tint:#262219;color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#17150f;--ink:#f3eee2;--muted:#b3ab98;--red:#ef4b3f;--red-ink:#1b0b09;--card:#211e17;--line:#38332a;--tint:#262219;color-scheme:dark}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font:17px/1.55 var(--t)}
+img{display:block;max-width:100%}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.wrap{max-width:1040px;margin:auto;padding:0 16px}
+.demo{background:var(--ink);color:var(--paper);font-size:13px;text-align:center;padding:8px 16px}
+.kicker{font:600 13px/1 var(--t);text-transform:uppercase;letter-spacing:.12em;color:var(--red)}
+h1,h2,h3{font-family:var(--h);font-weight:800;line-height:.98;letter-spacing:-.01em}
+h2{font-size:clamp(34px,6vw,54px);margin:10px 0 12px}
+h2 b,h1 b{color:var(--red);font-weight:800}
+.sub{color:var(--muted);max-width:36em}
+section{padding:64px 0}
+.btn{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:999px;padding:14px 22px;font-weight:600;text-decoration:none;background:var(--red);color:var(--red-ink);cursor:pointer}
+.btn.line{background:transparent;color:inherit;border:2px solid currentColor}
+
+/* HERO */
+.hero{position:relative;min-height:min(88vh,720px);display:flex;align-items:flex-end;color:#fff;overflow:hidden}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:kb 18s ease-out both}
+@keyframes kb{from{transform:scale(1.12)}to{transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){.hero img{animation:none}}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,12,8,.1) 25%,rgba(15,12,8,.85))}
+.hero .wrap{position:relative;z-index:1;padding-bottom:44px;width:100%}
+.hero .kicker{color:#ffd9d4}
+.hero h1{font-size:clamp(60px,16vw,148px);margin:12px 0 10px}
+.hero h1 b{color:#ff6a5c}
+.hero p{font-size:clamp(18px,2.4vw,22px);max-width:28em;opacity:.93}
+.acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+
+/* FACTS */
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:-34px;position:relative;z-index:2}
+.fact{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px}
+.fact b{display:block;font:800 30px/1 var(--h);color:var(--red)}
+.fact span{font-size:14px;color:var(--muted)}
+
+/* TABS */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:24px 0 18px}
+.tab{border:2px solid var(--line);background:var(--card);border-radius:999px;padding:10px 18px;font-weight:600;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.panel{display:grid;gap:22px;grid-template-columns:1fr;align-items:start}
+@media (min-width:800px){.panel{grid-template-columns:1.05fr 1fr}}
+.panel img{border-radius:20px;aspect-ratio:4/3;object-fit:cover;width:100%}
+.panel h3{font-size:clamp(28px,4vw,38px);margin-bottom:8px}
+.panel ul{list-style:none;margin:14px 0 0;display:grid;gap:8px}
+.panel li{display:flex;gap:10px}
+.panel li::before{content:"";flex:0 0 10px;height:10px;border-radius:50%;background:var(--red);margin-top:8px}
+
+/* PLANNER */
+.plan{background:var(--tint);border-radius:22px;padding:22px;margin-top:28px;display:grid;gap:16px}
+.plan label{display:grid;gap:6px;font-weight:600;font-size:15px}
+.row{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.plan input[type=range]{accent-color:var(--red);width:100%}
+.plan input[type=date],.plan select{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;width:100%}
+.ppl{font:800 40px/1 var(--h);color:var(--red)}
+.summary{background:var(--card);border:1px dashed var(--line);border-radius:16px;padding:16px;font-size:16px}
+.summary strong{font-family:var(--h);font-size:22px;display:block;margin-bottom:4px}
+
+/* BRASA */
+.plates{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:24px}
+.dish{background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.dish img{aspect-ratio:1;object-fit:cover;width:100%;background:#fff}
+.dish div{padding:14px 16px 18px}
+.dish h3{font-size:24px}
+.dish p{color:var(--muted);font-size:15px}
+
+/* EQUIP */
+.team{display:grid;gap:22px;align-items:center}
+@media (min-width:800px){.team{grid-template-columns:.8fr 1.2fr}}
+.team img{border-radius:20px;aspect-ratio:3/4;object-fit:cover;max-height:520px;width:100%}
+
+/* VISIT */
+.visit{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px}
+.card h3{font-size:24px;margin-bottom:6px}
+.card table{width:100%;border-collapse:collapse;font-size:15px}
+.card td{padding:6px 0;border-bottom:1px solid var(--line)}
+.card td:last-child{text-align:right;font-variant-numeric:tabular-nums}
+.today{color:var(--red);font-weight:600}
+
+footer{padding:40px 0 100px;text-align:center;color:var(--muted);font-size:14px}
+footer b{font-family:var(--h);color:var(--ink)}
+.bar{position:fixed;left:0;right:0;bottom:0;display:flex;gap:8px;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(10px);border-top:1px solid var(--line);z-index:5}
+.bar .btn{flex:1;justify-content:center;padding:12px}
+@media (min-width:800px){.bar{display:none}footer{padding-bottom:40px}}
+</style>
+</head>
+<body>
+<div class="demo">Mostra privada preparada per l’equip de Fes-te veure · No és la web oficial de Nou Gras</div>
+
+<header class="hero">
+  <img src="assets/grups.jpg" alt="Taula llarga parada a la sala de Nou Gras, amb llum de les finestres">
+  <div class="wrap">
+    <span class="kicker">Masia a Cabrils · Cuina catalana a la brasa</span>
+    <h1>Nou <b>Gras</b></h1>
+    <p>Bon lloc, bon menjar. I ara, un lloc on celebrar-ho tot: grups, festes i càtering a casa teva.</p>
+    <div class="acts">
+      <a class="btn" href="#celebrar">Organitza la teva celebració</a>
+      <a class="btn line" href="https://nougras.es/reservas/" rel="noopener">Reserva taula</a>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="facts">
+    <div class="fact"><b>4</b><span>sales interiors</span></div>
+    <div class="fact"><b>+1</b><span>terrassa a la masia</span></div>
+    <div class="fact"><b>3</b><span>menús de grup</span></div>
+    <div class="fact"><b>P</b><span>aparcament ampli</span></div>
+  </div>
+</div>
+
+<section id="celebrar">
+  <div class="wrap">
+    <span class="kicker">Què celebrem?</span>
+    <h2>Tu poses els <b>motius</b>. Nosaltres, la brasa.</h2>
+    <p class="sub">Tres maneres de fer festa amb Nou Gras. Tria-la i en un minut tens la petició preparada.</p>
+
+    <div class="tabs" role="tablist">
+      <button class="tab" role="tab" aria-selected="true" data-k="grups">Grups i empreses</button>
+      <button class="tab" role="tab" aria-selected="false" data-k="celebracions">Celebracions</button>
+      <button class="tab" role="tab" aria-selected="false" data-k="catering">Càtering</button>
+    </div>
+
+    <div class="panel" id="panel">
+      <img id="pimg" src="assets/sala.jpg" alt="">
+      <div>
+        <h3 id="ptitle"></h3>
+        <p id="ptext" class="sub"></p>
+        <ul id="plist"></ul>
+      </div>
+    </div>
+
+    <form class="plan" id="plan" onsubmit="return false">
+      <div class="row">
+        <label>Quantes persones?
+          <span class="ppl" id="pplv">20</span>
+          <input type="range" id="ppl" min="6" max="120" step="2" value="20" aria-label="Nombre de persones">
+        </label>
+        <label>Quin dia?
+          <input type="date" id="dia">
+        </label>
+        <label>Moment
+          <select id="moment"><option>Dinar</option><option>Sopar (divendres o dissabte)</option></select>
+        </label>
+      </div>
+      <div class="summary" id="sum" aria-live="polite"></div>
+      <div class="acts" style="margin:0">
+        <a class="btn" id="call" href="tel:+34937531953">Truca i explica-ho</a>
+        <button class="btn line" id="copy" type="button">Copia la petició</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section style="background:var(--tint)">
+  <div class="wrap">
+    <span class="kicker">La nostra brasa</span>
+    <h2>Producte bo i <b>foc</b> lent</h2>
+    <p class="sub">El que fa que la gent torni: carn madurada, peix i tapes de casa.</p>
+    <div class="plates">
+      <article class="dish"><img src="assets/brasa.jpg" alt="Txuletó a la brasa tallat a làmines"><div><h3>Txuletó madurat</h3><p>Un quilo, amb guarnició i pedra per acabar-lo al teu punt.</p></div></article>
+      <article class="dish"><img src="assets/hero.jpg" alt="Carn a la brasa amb pebrots del padró"><div><h3>De la graella</h3><p>Carn a la brasa amb pebrots del Padró.</p></div></article>
+      <article class="dish"><img src="assets/plat.jpg" alt="Calamarsons arrebossats amb maionesa"><div><h3>Per començar</h3><p>Calamarsons a l’andalusa amb maionesa de kimchi.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap team">
+    <img src="assets/equip.jpg" alt="Membre de l’equip de sala prenent nota">
+    <div>
+      <span class="kicker">Qui hi ha darrere</span>
+      <h2>Una <b>família</b> a la masia</h2>
+      <p class="sub">L’Ana a la sala i l’Àlex a la cuina. Cuina tradicional catalana en una masia amb decoració fresca, i ganes que cada taula surti contenta.</p>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap visit">
+    <div class="card">
+      <h3>Horari</h3>
+      <table id="hours">
+        <tr data-d="2"><td>Dimarts a dijous</td><td>13:30 – 16:45</td></tr>
+        <tr data-d="5"><td>Divendres i dissabte</td><td>13:30 – 16:45 · 20:30 – 23:00</td></tr>
+        <tr data-d="0"><td>Diumenge</td><td>13:30 – 16:45</td></tr>
+        <tr data-d="1"><td>Dilluns</td><td>Tancat</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>On som</h3>
+      <p>Carrer Cal Gras, 4<br>08348 Cabrils</p>
+      <div class="acts"><a class="btn line" href="https://maps.google.com/?q=Nou+Gras+Cabrils" rel="noopener">Com arribar-hi</a></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p><b>Mostra · Fes-te veure</b><br>Fotos i dades públiques de nougras.es, només per ensenyar la idea. Equip de Fes-te veure.</p>
+</footer>
+
+<nav class="bar"><a class="btn" href="tel:+34937531953">Truca</a><a class="btn line" href="#celebrar">Celebra-ho</a></nav>
+
+<script>
+const D={
+  grups:{img:"assets/sala.jpg",alt:"Sala interior parada per a un grup",t:"Grups i dinars d’empresa",p:"Sales per a vosaltres sols i tres menús de grup tancats, perquè ningú hagi de mirar la carta.",l:["Quatre sales interiors i terrassa","Tres menús de grup per triar","Aparcament per a tothom"]},
+  celebracions:{img:"assets/grups.jpg",alt:"Taula llarga amb copes a punt per a una celebració",t:"Aniversaris i festes",p:"Aniversaris, batejos, trobades familiars. Adaptem la proposta al que celebreu.",l:["Taula llarga amb llum natural","Menú pensat per a la vostra festa","Pastís i postres casolans"]},
+  catering:{img:"assets/brasa.jpg",alt:"Txuletó a la brasa",t:"Nou Gras a casa teva",p:"Els cuiners de Nou Gras també fan esdeveniments fora del restaurant.",l:["Cuina de brasa on sigui l’esdeveniment","Proposta a mida","Parla directament amb la cuina"]}
+};
+let k="grups";
+const $=id=>document.getElementById(id);
+function show(n){k=n;const d=D[n];$("pimg").src=d.img;$("pimg").alt=d.alt;$("ptitle").textContent=d.t;$("ptext").textContent=d.p;$("plist").innerHTML=d.l.map(x=>`<li>${x}</li>`).join("");
+  document.querySelectorAll(".tab").forEach(b=>b.setAttribute("aria-selected",b.dataset.k===n));sum();}
+document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>show(b.dataset.k));
+function txt(){const n=$("ppl").value,dia=$("dia").value,m=$("moment").value.split(" ")[0].toLowerCase();
+  const f=dia?new Date(dia+"T12:00").toLocaleDateString("ca-ES",{weekday:"long",day:"numeric",month:"long"}):"dia per concretar";
+  return `Hola Nou Gras! Volem fer ${D[k].t.toLowerCase()} per a ${n} persones, ${m}, ${f}. Ens podeu dir opcions?`;}
+function sum(){const d=$("dia").value;let warn="";
+  if(d){const w=new Date(d+"T12:00").getDay();if(w===1)warn=" Els dilluns el restaurant és tancat.";else if($("moment").selectedIndex===1&&w!==5&&w!==6)warn=" Els sopars són divendres i dissabte.";}
+  $("pplv").textContent=$("ppl").value;$("sum").innerHTML=`<strong>La teva petició</strong>${txt()}<span style="color:var(--red)">${warn}</span>`;}
+["ppl","dia","moment"].forEach(i=>$(i).addEventListener("input",sum));
+$("copy").onclick=async()=>{try{await navigator.clipboard.writeText(txt());$("copy").textContent="Copiada!";}catch(e){$("copy").textContent="No s’ha pogut copiar";}setTimeout(()=>$("copy").textContent="Copia la petició",1800);};
+const today=new Date().getDay();document.querySelectorAll("#hours tr").forEach(r=>{const d=+r.dataset.d;if(d===today||(d===2&&today>=2&&today<=4)||(d===5&&(today===5||today===6)))r.classList.add("today");});
+show("grups");
+</script>
+</body>
+</html>
